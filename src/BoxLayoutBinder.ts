@@ -1,9 +1,10 @@
 import { ComponentBinder, Component } from "@wildebeest/component";
 import { BoxLayout } from "@wildebeest/boxlayout";
-import { inject, named } from "inversify";
+import { inject, named, injectable } from "inversify";
 import { ScrollBoxBinder } from '@wildebeest/scroll-standard';
 import { ScrollBox } from "@wildebeest/scroll";
 
+@injectable()
 export class BoxLayoutBinder implements ComponentBinder
 {
     protected boxLayoutFactory: () => BoxLayout;

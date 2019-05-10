@@ -53,6 +53,7 @@ var BoxLayoutBinder = (function () {
         boxLayout.bindElement(element, position);
     };
     BoxLayoutBinder = __decorate([
+        inversify_1.injectable(),
         __param(0, inversify_1.inject('Factory<BoxLayout>')), __param(1, inversify_1.inject("ComponentBinder")), __param(1, inversify_1.named('scroll-box')),
         __metadata("design:paramtypes", [Function, scroll_standard_1.ScrollBoxBinder])
     ], BoxLayoutBinder);
