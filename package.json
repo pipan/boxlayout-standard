@@ -17,11 +17,13 @@
     "url": "git+https://github.com/pipan/js-scroll.git"
   },
   "dependencies": {
+    "@wildebeest/boxlayout": "^0.4.17",
     "@wildebeest/common": "^0.2.3",
     "@wildebeest/component": "^0.1.0",
     "@wildebeest/drag": "^0.3.1",
     "@wildebeest/js-modules": "^0.1.2",
-    "@wildebeest/boxlayout": "^0.4.16"
+    "@wildebeest/scroll-standard": "^0.1.1",
+    "@wildebeest/scroll": "^0.3.14"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",

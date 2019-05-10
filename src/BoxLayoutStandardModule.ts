@@ -3,12 +3,13 @@ import { BoxLayoutModule } from '@wildebeest/boxlayout';
 import { Container } from 'inversify';
 import { ComponentBindService } from '@wildebeest/component';
 import { BoxLayoutBinder } from './BoxLayoutBinder';
+import { ScrollStandardModule } from '@wildebeest/scroll-standard';
 
 export class BoxLayoutStandardModule implements Module
 {
     getDependencies():Array<any>
     {
-        return [BoxLayoutModule]
+        return [BoxLayoutModule, ScrollStandardModule]
     }
 
     register(container: Container): void
@@ -21,7 +22,7 @@ export class BoxLayoutStandardModule implements Module
         let componentBindService: ComponentBindService = container.get<ComponentBindService>(ComponentBindService);
         componentBindService.addBinder('boxLayout', {
             selector: '.std-box-layout',
-            binder: container.getNamed("ComponentBinder", "box-layout");
+            binder: container.getNamed("ComponentBinder", "box-layout")
         });
     }
 }
