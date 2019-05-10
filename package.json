@@ -1,6 +1,6 @@
 {
   "name": "@wildebeest/boxlayout-standard",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Boxlayout with standardized css classes selectors and attributes",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
