@@ -4,12 +4,13 @@ import { Container } from 'inversify';
 import { ComponentBindService } from '@wildebeest/component';
 import { BoxLayoutBinder } from './BoxLayoutBinder';
 import { ScrollStandardModule } from '@wildebeest/scroll-standard';
+import { ScrollModule } from '@wildebeest/scroll';
 
 export class BoxLayoutStandardModule implements Module
 {
     getDependencies():Array<any>
     {
-        return [BoxLayoutModule, ScrollStandardModule]
+        return [BoxLayoutModule, ScrollStandardModule, ScrollModule]
     }
 
     register(container: Container): void
