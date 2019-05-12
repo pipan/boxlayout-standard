@@ -4,12 +4,11 @@ var boxlayout_1 = require("@wildebeest/boxlayout");
 var component_1 = require("@wildebeest/component");
 var BoxLayoutBinder_1 = require("./BoxLayoutBinder");
 var scroll_standard_1 = require("@wildebeest/scroll-standard");
-var scroll_1 = require("@wildebeest/scroll");
 var BoxLayoutStandardModule = (function () {
     function BoxLayoutStandardModule() {
     }
     BoxLayoutStandardModule.prototype.getDependencies = function () {
-        return [boxlayout_1.BoxLayoutModule, scroll_standard_1.ScrollStandardModule, scroll_1.ScrollModule];
+        return [boxlayout_1.BoxLayoutModule, scroll_standard_1.ScrollStandardModule, component_1.ComponentModule];
     };
     BoxLayoutStandardModule.prototype.register = function (container) {
         container.bind("ComponentBinder").to(BoxLayoutBinder_1.BoxLayoutBinder).whenTargetNamed('box-layout');

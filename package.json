@@ -19,11 +19,11 @@
   "dependencies": {
     "@wildebeest/boxlayout": "^0.4.17",
     "@wildebeest/common": "^0.2.3",
-    "@wildebeest/component": "^0.1.0",
+    "@wildebeest/component": "^0.2.1",
     "@wildebeest/drag": "^0.3.1",
     "@wildebeest/js-modules": "^0.1.2",
-    "@wildebeest/scroll-standard": "^0.1.1",
-    "@wildebeest/scroll": "^0.3.14"
+    "@wildebeest/scroll": "^0.3.16",
+    "@wildebeest/scroll-standard": "^0.1.3"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",

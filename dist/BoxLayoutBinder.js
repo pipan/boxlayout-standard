@@ -12,12 +12,14 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var component_1 = require("@wildebeest/component");
 var inversify_1 = require("inversify");
 var scroll_standard_1 = require("@wildebeest/scroll-standard");
 var BoxLayoutBinder = (function () {
-    function BoxLayoutBinder(boxLayoutFactory, scrollBoxBinder) {
+    function BoxLayoutBinder(boxLayoutFactory, scrollBoxBinder, elementService) {
         this.boxLayoutFactory = boxLayoutFactory;
         this.scrollBoxBinder = scrollBoxBinder;
+        this.elementService = elementService;
     }
     BoxLayoutBinder.prototype.getAttribute = function (element, name, def) {
         if (element.getAttribute(name)) {
@@ -36,15 +38,25 @@ var BoxLayoutBinder = (function () {
                 dragable: this.getAttribute(element, 'data-dragable', true)
             }
         });
-        this.bindToLayout(boxLayout, element.querySelector('.std-box-layout__top'), 'top');
-        this.bindToLayout(boxLayout, element.querySelector('.std-box-layout__left'), 'left');
-        this.bindToLayout(boxLayout, element.querySelector('.std-box-layout__center'), 'center');
-        this.bindToLayout(boxLayout, element.querySelector('.std-box-layout__right'), 'right');
-        this.bindToLayout(boxLayout, element.querySelector('.std-box-layout__bottom'), 'bottom');
+        var selectors = {
+            top: '.std-box-layout__top',
+            left: '.std-box-layout__left',
+            center: '.std-box-layout__center',
+            right: '.std-box-layout__right',
+            bottom: '.std-box-layout__bottom'
+        };
+        for (var position in selectors) {
+            var positionElement = element.querySelector(selectors[position]);
+            if (!positionElement) {
+                throw "Cannot find element with class '" + selectors[position] + "' in BoxLayout element";
+            }
+            this.bindToLayout(boxLayout, positionElement, position);
+        }
+        this.elementService.addComponent(element, boxLayout);
         return boxLayout;
     };
     BoxLayoutBinder.prototype.bindToLayout = function (boxLayout, element, position) {
-        if (element.getAttribute('data-scrollable')) {
+        if (!element.getAttribute('data-scrollable') || element.getAttribute('data-scrollable') != "false") {
             var scrollBox_1 = this.scrollBoxBinder.bind(element);
             boxLayout.getEmitter().on('resize', function () {
                 scrollBox_1.recalc();
@@ -54,8 +66,8 @@ var BoxLayoutBinder = (function () {
     };
     BoxLayoutBinder = __decorate([
         inversify_1.injectable(),
-        __param(0, inversify_1.inject('Factory<BoxLayout>')), __param(1, inversify_1.inject("ComponentBinder")), __param(1, inversify_1.named('scroll-box')),
-        __metadata("design:paramtypes", [Function, scroll_standard_1.ScrollBoxBinder])
+        __param(0, inversify_1.inject('Factory<BoxLayout>')), __param(1, inversify_1.inject("ComponentBinder")), __param(1, inversify_1.named('scroll-box')), __param(2, inversify_1.inject(component_1.ElementService)),
+        __metadata("design:paramtypes", [Function, scroll_standard_1.ScrollBoxBinder, component_1.ElementService])
     ], BoxLayoutBinder);
     return BoxLayoutBinder;
 }());

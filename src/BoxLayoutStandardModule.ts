@@ -1,16 +1,15 @@
 import { Module } from '@wildebeest/js-modules';
 import { BoxLayoutModule } from '@wildebeest/boxlayout';
 import { Container } from 'inversify';
-import { ComponentBindService } from '@wildebeest/component';
+import { ComponentBindService, ComponentModule } from '@wildebeest/component';
 import { BoxLayoutBinder } from './BoxLayoutBinder';
 import { ScrollStandardModule } from '@wildebeest/scroll-standard';
-import { ScrollModule } from '@wildebeest/scroll';
 
 export class BoxLayoutStandardModule implements Module
 {
     getDependencies():Array<any>
     {
-        return [BoxLayoutModule, ScrollStandardModule, ScrollModule]
+        return [BoxLayoutModule, ScrollStandardModule, ComponentModule]
     }
 
     register(container: Container): void
